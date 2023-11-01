@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, html{
+    height: 100;
+    width: 100;
+}
+
+
+#container{
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#gamesboard-container{
+    width: 100;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    justify-content: space-between;
+}
+
+
+.game-board{
+    width: 25rem;
+    height: 25rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#game-info{
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+
+.block{
+    width: 2.5rem;
+    height: 2.5rem;
+    box-sizing: border-box;
+}
+
+.block:hover{
+    background-color: grey;
+}
+
+
+.option-container{
+    margin-left: 10rem;
+    width: 25rem;
+    height: 5rem;
+    padding: 1rem;
+    margin-top: 3rem;
+    background-color: #fef08a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.destroyer{
+    background-color: brown;
+}
+
+
+
+.destroyer-preview{
+    width: 2rem;
+    height: 1rem;
+    margin: 0.3rem;
+}
+
+.submarine{
+    background-color: green;
+}
+
+.cruiser{
+    background-color: purple;
+}
+
+.battleship{
+    background-color: orange;
+}
+
+.carrier{
+    background-color: blue;
+}
+
+.submarine-preview{
+    width: 3rem;
+    height: 1rem;
+    margin: 0.3rem;
+}
+
+.cruiser-preview{
+    width: 3rem;
+    height: 1rem;
+    margin: 0.3rem;
+}
+
+.battleship-preview{
+    width: 4rem;
+    height: 1rem;
+    margin: 0.3rem;
+}
+
+
+.carrier-preview{
+
+    width: 5rem;
+    height: 1rem;
+    margin: 0.3rem;
+
+}
+
+
+#computer .destroyer,
+#computer .submarine,
+#computer .cruiser,
+#computer .battleship,
+#computer .carrier{
+    background-color: #e879f9;
+}
+
+
+.hover{
+    background-color: grey;
+}
+
+.boom{
+    background-color: red !important;
+}
+
+
+.empty{
+    background-color: grey !important;
+}
+
+
+#option-switch-parentDiv{
+    display: flex;
+    gap: 2rem;
+}
+
+
+
+.switch-div {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-top: 3.5rem;
+}
+
+.switch-div > button{
+    cursor: pointer;
+    padding: 0.8rem;
+    background-color: #0ea5e9;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.switch-div > button:hover{
+    background-color: #0369a1;
+    transition: ease-in 300ms;
+}

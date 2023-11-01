@@ -4,23 +4,30 @@
   "description": "Battleship game using unit testing",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack",
-    "buil-watch": "webpack --watch"
+    "build-watch": "webpack --watch"
   },
   "author": "subhranshu",
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "license": "ISC",
   "dependencies": {
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "babel-jest": "^29.7.0",
     "css-loader": "^6.8.1",
     "eslint": "^8.52.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "^2.28.1",
     "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "prettier": "3.0.3",
     "style-loader": "^3.3.3"
   }
