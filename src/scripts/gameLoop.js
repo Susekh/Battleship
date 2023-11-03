@@ -11,7 +11,7 @@ function gamePlay() {
 
   // handle click
   function handleClick(e) {
-    if (!gameOver) {
+    if (!gameOver && !e.target.classList.contains('empty') && !e.target.classList.contains('boom')) {
       if (e.target.classList.contains('taken')) {
         e.target.classList.add('boom');
         infoDisplay.textContent = 'you hit the enemy\'s ship!';
