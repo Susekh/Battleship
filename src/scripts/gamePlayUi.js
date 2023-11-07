@@ -85,6 +85,12 @@ function HomeUiRender() {
   createBoard('#fef08a', 'player', gamesBoardContainer);
   createBoard('#f5d0fe', 'enemy', gamesBoardContainer);
 
+  // making div to overlay on enemy board when enemy is attacking
+  const enemyBoard = document.getElementById('enemy');
+  const boardOverlay = document.createElement('div');
+  boardOverlay.classList.add('enemy-board-overlay');
+  enemyBoard.appendChild(boardOverlay);
+
   // making flip switch work
   const playGame = GameBoard();
   flipSwitch.addEventListener('click', playGame.flip);

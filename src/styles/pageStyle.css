@@ -53,7 +53,7 @@ body, html{
 }
 
 .block:hover{
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.523);
 }
 
 
@@ -136,7 +136,7 @@ body, html{
 
 
 .hover{
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.604);
 }
 
 .boom{
@@ -145,7 +145,9 @@ body, html{
 
 
 .empty{
-    background-color: grey !important;
+    border-radius: 50%;
+    width: -1rem;
+    background-color: rgba(95, 158, 160, 0.926) ;
 }
 
 
@@ -177,4 +179,22 @@ body, html{
 .switch-div > button:hover{
     background-color: #0369a1;
     transition: ease-in 300ms;
+}
+
+
+#enemy{
+    position: relative;
+}
+
+
+
+.enemy-board-overlay{
+    background-color: rgba(255, 255, 255, 0.482);
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
 }

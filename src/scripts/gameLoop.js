@@ -1,3 +1,5 @@
+import { shipArr } from './ships';
+
 function gamePlay() {
   const width = 10;
   const turnDisplay = document.getElementById('turn-display-update');
@@ -5,13 +7,57 @@ function gamePlay() {
   const optionContainer = document.querySelector('.option-container');
   const startButton = document.getElementById('start-button');
   let playerTurn;
-  const gameOver = false;
+  let gameOver = false;
   const playerHits = [];
   const computerHits = [];
+  const playerSunkedShips = [];
+  const enemySunkedShips = [];
+  const playerShipsArry = [...shipArr];
+  const enemyShipsArry = [...shipArr];
+  // make the enemy board div unclickable when enemy attacks
+  function EnemyBoardOverlay(display) {
+    document.querySelector('.enemy-board-overlay').style.display = `${display}`;
+  }
+  // check game is over or not
+
+  function checkGameOver() {
+    if (playerSunkedShips.length === 5) {
+      turnDisplay.textContent = 'Game is Over';
+      infoDisplay.textContent = 'Player won the match!';
+
+      gameOver = true;
+    }
+    if (enemySunkedShips.length === 5) {
+      turnDisplay.textContent = 'Game is Over';
+      infoDisplay.textContent = 'enemy won the match!';
+
+      gameOver = true;
+    }
+  }
+
+  // is sunk function
+  function checkScore(shipClass, user, userArray) {
+    userArray.forEach((ship) => {
+      if (ship.name === shipClass) {
+        ship.hit(1);
+        if (ship.isSunk()) {
+          if (user === 'player') {
+            infoDisplay.textContent = `You sank enemy's ${shipClass}`;
+            playerSunkedShips.push(ship.name);
+          }
+          if (user === 'enemy') {
+            infoDisplay.textContent = `Enemy sank your ${shipClass}`;
+            enemySunkedShips.push(ship.name);
+          }
+          checkGameOver();
+        }
+      }
+    });
+  }
 
   // handle click
-  function handleClick(e) {
-    if (!gameOver && !e.target.classList.contains('empty') && !e.target.classList.contains('boom')) {
+  function recieveAttack(e) {
+    if (!gameOver && !e.target.classList.contains('empty') && !e.target.classList.contains('boom') && !e.target.classList.contains('enemy-board-overlay')) {
       if (e.target.classList.contains('taken')) {
         e.target.classList.add('boom');
         infoDisplay.textContent = 'you hit the enemy\'s ship!';
@@ -20,11 +66,13 @@ function gamePlay() {
         classes = classes.filter((className) => className !== 'block');
         classes = classes.filter((className) => className !== 'boom');
         classes = classes.filter((className) => className !== 'taken');
-        playerHits.push(...classes);
+        playerHits.push(classes[0]);
+        checkScore(classes[0], 'player', playerShipsArry);
       } else {
         infoDisplay.textContent = 'You hit enemy\'s waters.';
         e.target.classList.add('empty');
       }
+      EnemyBoardOverlay('block');
 
       playerTurn = false;
       // eslint-disable-next-line no-use-before-define
@@ -54,18 +102,21 @@ function gamePlay() {
           classes = classes.filter((className) => className !== 'boom');
           classes = classes.filter((className) => className !== 'taken');
           computerHits.push(...classes);
+          checkScore(classes, 'enemy', enemyShipsArry);
         } else {
           infoDisplay.textContent = 'Computer hit nothing this time.';
+
           allBoardBlocks[randomGo].classList.add('empty');
         }
       }, 1000);
 
       setTimeout(() => {
         playerTurn = true;
+        EnemyBoardOverlay('none');
         turnDisplay.textContent = 'Your Turn!';
         infoDisplay.textContent = 'Please take your go.';
         const allBoardBlocks = Array.from(document.querySelectorAll('#enemy div'));
-        allBoardBlocks.forEach((blocks) => blocks.addEventListener('click', handleClick));
+        allBoardBlocks.forEach((blocks) => blocks.addEventListener('click', recieveAttack));
       }, 2500);
     }
   }
@@ -73,11 +124,11 @@ function gamePlay() {
   // start Game
   function startGame() {
     if (playerTurn === undefined) {
-      if (optionContainer.children.length === 0) {
+      if (optionContainer.children.length !== 0) {
         infoDisplay.innerText = 'Place all your ships first';
       } else {
         const allBoardBlocks = document.querySelectorAll('#enemy div');
-        allBoardBlocks.forEach((block) => { block.addEventListener('click', handleClick); });
+        allBoardBlocks.forEach((block) => { block.addEventListener('click', recieveAttack); });
         playerTurn = true;
         turnDisplay.innerText = 'Your Turn!';
         infoDisplay.innerText = 'The game has started';
