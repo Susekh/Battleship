@@ -20,7 +20,6 @@ function setClass(id, class1, class2) {
 function createBoard(color, user, parentDiv) {
   const gameBoardContainer = document.createElement('div');
   gameBoardContainer.classList.add('game-board');
-  gameBoardContainer.style.backgroundColor = color;
   gameBoardContainer.id = user;
 
   for (let i = 0; i < width * width; i += 1) {
@@ -67,12 +66,20 @@ function HomeUiRender() {
   const startButton = document.createElement('button');
   startButton.id = 'start-button';
   startButton.innerText = 'START';
+
+  function playAudio() {
+    const audio = new Audio('winning-elevation-111355.mp3');
+
+    audio.play();
+  }
   switchDiv.append(flipSwitch, startButton);
   const OptionSwitchParentDiv = document.createElement('div');
   OptionSwitchParentDiv.id = 'option-switch-parentDiv';
   OptionSwitchParentDiv.append(optionContainer, switchDiv);
 
   pageLoader.append(gameStatus, gamesBoardContainer, OptionSwitchParentDiv);
+
+  playAudio();
 
   //   giving each divs classes
   setClass('0', 'destroyer-preview', 'destroyer');

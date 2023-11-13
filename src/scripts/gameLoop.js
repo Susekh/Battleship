@@ -8,8 +8,6 @@ function gamePlay() {
   const startButton = document.getElementById('start-button');
   let playerTurn;
   let gameOver = false;
-  const playerHits = [];
-  const computerHits = [];
   const playerSunkedShips = [];
   const enemySunkedShips = [];
   const playerShipsArry = [...shipArr];
@@ -66,7 +64,7 @@ function gamePlay() {
         classes = classes.filter((className) => className !== 'block');
         classes = classes.filter((className) => className !== 'boom');
         classes = classes.filter((className) => className !== 'taken');
-        playerHits.push(classes[0]);
+
         checkScore(classes[0], 'player', playerShipsArry);
       } else {
         infoDisplay.textContent = 'You hit enemy\'s waters.';
@@ -76,13 +74,13 @@ function gamePlay() {
 
       playerTurn = false;
       // eslint-disable-next-line no-use-before-define
-      setTimeout(computerGo, 2000);
+      setTimeout(enemyGo, 2000);
     }
   }
 
-  // computer go
+  // enemy turn
 
-  function computerGo() {
+  function enemyGo() {
     if (!gameOver) {
       turnDisplay.textContent = 'Computers Go!';
       infoDisplay.textContent = 'The computer is thinking...';
@@ -91,9 +89,9 @@ function gamePlay() {
         const randomGo = Math.floor(Math.random() * width * width);
         const allBoardBlocks = document.querySelectorAll('#player div');
         if (allBoardBlocks[randomGo].classList.contains('taken') && allBoardBlocks[randomGo].classList.contains('boom')) {
-          computerGo();
+          enemyGo();
         } else if (allBoardBlocks[randomGo].classList.contains('empty')) {
-          computerGo();
+          enemyGo();
         } else if (allBoardBlocks[randomGo].classList.contains('taken') && !allBoardBlocks[randomGo].classList.contains('boom')) {
           allBoardBlocks[randomGo].classList.add('boom');
           infoDisplay.textContent = 'The computer hit your ship!';
@@ -101,7 +99,7 @@ function gamePlay() {
           classes = classes.filter((className) => className !== 'block');
           classes = classes.filter((className) => className !== 'boom');
           classes = classes.filter((className) => className !== 'taken');
-          computerHits.push(...classes);
+
           checkScore(classes, 'enemy', enemyShipsArry);
         } else {
           infoDisplay.textContent = 'Computer hit nothing this time.';

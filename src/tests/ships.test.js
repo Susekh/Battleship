@@ -17,16 +17,13 @@ test('hit() increments hits test-3', () => {
 });
 // Checks Sunk function works or not
 test('Checks isSunk test-1', () => {
-  shipArr[3].Sunk();
-  expect(shipArr[3].isSunk).toBe(true);
+  expect(shipArr[3].isSunk()).toBe(true);
 });
 
 test('Checks isSunk test-2', () => {
-  shipArr[4].Sunk();
-  expect(shipArr[4].isSunk).toBe(true);
+  expect(shipArr[4].isSunk()).toBe(true);
 });
 
 test('Checks isSunk test-3', () => {
-  shipArr[0].Sunk();
-  expect(shipArr[0].isSunk).toBe(true);
+  expect(shipArr[0].isSunk()).toBe(true);
 });

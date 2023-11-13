@@ -16,10 +16,13 @@ body, html{
 
 
 #container{
-    padding: 3rem;
+    height: 100vh;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    background-image: url(../assets/Images/pexels-pixabay-531767.jpg);
+    background-size: cover;
 }
 
 #gamesboard-container{
@@ -37,6 +40,7 @@ body, html{
     height: 25rem;
     display: flex;
     flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
 #game-info{
@@ -45,11 +49,23 @@ body, html{
     padding: 1rem;
 }
 
+#player{
+    background-image: url(../assets/Images/pexels-matthew-barra-812958.jpg);
+    background-size: cover;
+}
+#enemy{
+    background-image: url(../assets/Images/pexels-muffin-creatives-1646311.jpg);
+    background-size: cover;
+}
+
+
 
 .block{
     width: 2.5rem;
     height: 2.5rem;
     box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    
 }
 
 .block:hover{
@@ -63,7 +79,9 @@ body, html{
     height: 5rem;
     padding: 1rem;
     margin-top: 3rem;
-    background-color: #fef08a;
+    background-image: url(../assets/Images/pexels-dlkr-5676470.jpg);
+    background-size: cover;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,6 +90,9 @@ body, html{
 
 .destroyer{
     background-color: brown;
+}
+#enemy .destroyer{
+    background-color: transparent;
 }
 
 
@@ -85,18 +106,31 @@ body, html{
 .submarine{
     background-color: green;
 }
+#enemy .submarine{
+    background-color: transparent;
+}
 
 .cruiser{
     background-color: purple;
+}
+#enemy .cruiser{
+    background-color: transparent;
 }
 
 .battleship{
     background-color: orange;
 }
+#enemy .battleship{
+    background-color: transparent;
+}
 
 .carrier{
     background-color: blue;
 }
+#enemy .carrier{
+    background-color: transparent;
+}
+
 
 .submarine-preview{
     width: 3rem;
